@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paws & Hearts - Street Dog Adoption</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-color: #6f42c1;
+            --secondary-color: #e83e8c;
+            --accent-color: #fd7e14;
+            --success-color: #198754;
+            --info-color: #0dcaf0;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn-custom {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary-custom {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+        }
+        
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(111, 66, 193, 0.3);
+        }
+        
+        .btn-outline-custom {
+            border: 2px solid white;
+            color: white;
+            background: transparent;
+        }
+        
+        .btn-outline-custom:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .card-custom {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .card-custom:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+        }
+        
+        .icon-box-primary {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        
+        .icon-box-success {
+            background: linear-gradient(45deg, var(--success-color), #20c997);
+            color: white;
+        }
+        
+        .icon-box-warning {
+            background: linear-gradient(45deg, var(--warning-color), var(--accent-color));
+            color: white;
+        }
+        
+        .icon-box-info {
+            background: linear-gradient(45deg, var(--info-color), #0d6efd);
+            color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .dog-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .dog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .dog-image {
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+        
+        .dog-image-real {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-available {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .status-pending {
+            background: var(--warning-color);
+            color: white;
+        }
+        
+        .status-adopted {
+            background: var(--danger-color);
+            color: white;
+        }
+        
+        .navbar-custom {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-color) !important;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .footer-custom {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-custom h5 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-custom a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-custom a:hover {
+            color: white;
+        }
+        
+        .page-section {
+            display: none;
+            padding: 2rem 0;
+        }
+        
+        .page-section.active {
+            display: block;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        
+        .contact-info h4 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+        
+        .gallery-item {
+            margin-bottom: 2rem;
+        }
+        
+        .gallery-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .filter-btn {
+            margin: 0.25rem;
+            border-radius: 25px;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .volunteer-activity {
+            background: var(--light-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .donation-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .donation-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            background: var(--light-color);
+            border: 2px dashed var(--primary-color);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 3rem;
+            color: var(--primary-color);
+        }
+        
+        .schedule-item {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .schedule-item h5 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <img src="" alt="">
+            <a class="navbar-brand" href="#" onclick="showPage('home')">
+                🐾 Paws & Hearts
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('home')">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('about')">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('adopt')">Adopt</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('volunteer')">Volunteer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('donate')">Donate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('food')">Free Food</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('gallery')">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('contact')">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page-section active">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <h1>Adopt, Don't Shop</h1>
+                <p>Give a Street Dog a Loving Home 🏠❤️</p>
+                <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
+                    <button class="btn btn-primary-custom btn-custom" onclick="showPage('adopt')">
+                        🐕 Adopt Now
+                    </button>
+                    <button class="btn btn-outline-custom btn-custom" onclick="showPage('volunteer')">
+                        🤝 Volunteer
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-custom h-100 text-center p-4" onclick="showPage('adopt')" style="cursor: pointer;">
+                            <div class="icon-box icon-box-primary">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h5>Adopt</h5>
+                            <p class="text-muted">Find your perfect companion</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-custom h-100 text-center p-4" onclick="showPage('volunteer')" style="cursor: pointer;">
+                            <div class="icon-box icon-box-success">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h5>Volunteer</h5>
+                            <p class="text-muted">Help us make a difference</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-custom h-100 text-center p-4" onclick="showPage('donate')" style="cursor: pointer;">
+                            <div class="icon-box icon-box-warning">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <h5>Donate</h5>
+                            <p class="text-muted">Support our mission</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-custom h-100 text-center p-4" onclick="showPage('food')" style="cursor: pointer;">
+                            <div class="icon-box icon-box-info">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h5>Free Food</h5>
+                            <p class="text-muted">Food distribution program</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success Stories -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Success Stories 🌟</h2>
+                    <p>Meet some of our happy dogs who found their forever homes</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card card-custom">
+                            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=250&fit=crop&crop=face" alt="Buddy with his new family" class="dog-image-real" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="dog-image" style="display: none;">🐕</div>
+                            <div class="card-body">
+                                <h5 class="card-title">Buddy</h5>
+                                <p class="card-text">Found his forever home with the Johnson family. Now he enjoys daily walks and lots of cuddles!</p>
+                                <span class="badge bg-success">Adopted ✅</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-custom">
+                            <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?w=400&h=250&fit=crop&crop=face" alt="Luna with her elderly companions" class="dog-image-real" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="dog-image" style="display: none;">🐶</div>
+                            <div class="card-body">
+                                <h5 class="card-title">Luna</h5>
+                                <p class="card-text">This sweet girl found her perfect match with a loving elderly couple. She's their daily companion now!</p>
+                                <span class="badge bg-success">Adopted ✅</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-custom">
+                            <img src="https://images.unsplash.com/photo-1551717743-49959800b1f6?w=400&h=250&fit=crop&crop=face" alt="Max in his new home" class="dog-image-real" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="dog-image" style="display: none;">🦮</div>
+                            <div class="card-body">
+                                <h5 class="card-title">Max</h5>
+                                <p class="card-text">From street to family pet! Max now has his own bed, toys, and a family that adores him.</p>
+                                <span class="badge bg-success">Adopted ✅</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="about" class="page-section">
+        <div class="container py-5">
+            <div class="section-title">
+                <h2>About Paws & Hearts 🐾</h2>
+                <p>We believe every street dog deserves a loving home and a second chance at happiness</p>
+            </div>
+
+            <div class="row g-5 mb-5">
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Our Mission 🎯</h3>
+                    <p class="mb-4">We started this initiative because we witnessed the harsh reality of street dogs - hungry, scared, and longing for love. Our mission is to bridge the gap between these beautiful souls and families looking for loyal companions.</p>
+                    <p>Every dog deserves a warm bed, regular meals, medical care, and most importantly, unconditional love. We work tirelessly to make this a reality.</p>
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Our Vision 🌟</h3>
+                    <p class="mb-4">We envision a world where no dog has to sleep on cold streets or search for food in garbage bins. A world where every wagging tail has a home to return to.</p>
+                    <p>Through adoption, education, and community support, we're working towards creating a society that values and protects all animals.</p>
+                </div>
+            </div>
+
+            <div class="card card-custom">
+                <div class="card-body p-5">
+                    <h3 class="text-center mb-5">Our Amazing Team 👥</h3>
+                    <div class="row g-4">
+                        <div class="col-md-4 text-center">
+                            <div class="icon-box icon-box-primary mb-3">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h5>Dr. Sarah Johnson</h5>
+                            <p class="text-primary mb-2">Veterinarian & Founder</p>
+                            <p class="text-muted small">Provides medical care and leads our rescue operations</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="icon-box icon-box-success mb-3">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h5>Mike Chen</h5>
+                            <p class="text-primary mb-2">Operations Manager</p>
+                            <p class="text-muted small">Coordinates adoptions and volunteer activities</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="icon-box icon-box-info mb-3">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h5>Emma Rodriguez</h5>
+                            <p class="text-primary mb-2">Community Outreach</p>
+                            <p class="text-muted small">Builds partnerships and organizes awareness campaigns</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adopt a Dog Page -->
+    <div id="adopt" class="page-section">
+        <div class="container py-5">
+            <div class="section-title">
+                <h2>Find Your Perfect Companion 🐕</h2>
+                <p>These amazing dogs are looking for their forever homes</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="text-center mb-5">
+                <button class="filter-btn active" onclick="filterDogs('all')">All Dogs</button>
+                <button class="filter-btn" onclick="filterDogs('puppies')">Puppies</button>
+                <button class="filter-btn" onclick="filterDogs('adult')">Adult Dogs</button>
+                <button class="filter-btn" onclick="filterDogs('senior')">Senior Dogs</button>
+                <button class="filter-btn" onclick="filterDogs('special')">Special Needs</button>
+            </div>
+
+            <!-- Dogs Grid -->
+            <div class="row g-4" id="dogs-grid">
+                <!-- Buddy - Adult Dog -->
+                <div class="col-lg-4 col-md-6 dog-item adult">
+                    <div class="dog-card position-relative">
+                        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=250&fit=crop&crop=face" alt="Buddy - Friendly mixed breed dog" class="dog-image-real" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="dog-image" style="display: none;">🐕</div>
+                        <span class="status-badge status-available">Available</span>
+                        <div class="card-body p-4">
+                            <h5 class="card-title">Buddy</h5>
+                            <div class="mb-3">
+                                <small class="text-muted d-block"><strong>Age:</strong> 2 years</small>
+                                <small class="text-muted d-block"><strong>Breed:</strong> Mixed Breed</small>
+                                <small class="text-muted d-block"><strong>Health:</strong> Healthy, vaccinated</small>
+                            </div>
+                            <p class="card-text">Friendly and energetic dog who loves playing fetch and going for walks.</p>
+                            <button class="btn btn-primary-custom w-100" data-bs-toggle="modal" data-bs-target="#adoptionModal">
+                                Adopt Buddy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Luna - Puppy -->
+                <div class="col-lg-4 col-md-6 dog-item puppies">
+                    <div class="dog-card position-relative">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&h=250&fit=crop&crop=face" alt="Luna - Sweet puppy" class="dog-image-real" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="dog-image" style="display: none;">🐶</div>
+                        <span class="status-badge status-available">Available</span>
+                        <div class="card-body p-4">
+                            <h5 class="card-title">Luna</h5>
+                            <div class="mb-3">
+                                <small class="text-muted d-block"><strong>Age:</strong> 6 months</small>
+                                <small class="text-muted d-block"><strong>Breed:</strong> Indian Pariah</small>
+                                <small class="text-muted d-block"><strong>Health:</strong> Healthy, first vaccination done</small>
+                            </div>
+                            <p class="card-text">Sweet puppy who loves cuddles and is great with children.</p>
+                            <button class="btn btn-primary-custom w-100" data-bs-toggle="modal" data-bs-target="#adoptionModal">
+                                Adopt Luna
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Max - Senior Dog -->
+                <div class="col-lg-4 col-md-6 dog-item senior">
+                    <div class="dog-card position-relative">
+                        <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=400&h=250&fit=crop&crop=face" alt="Max - Gentle senior dog" class="dog-image-real" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="dog-image" style="display: none;">🦮</div>
+                        <span class="status-badge status-pending">Pending</span>
+                        <div class="card-body p-4">
+                            <h5 class="card-title">Max</h5>
+                            <div class="mb-3">
+                                <small class="text-muted d-block"><strong>Age:</strong> 8 years</small>
+                                <small class="text-muted d-block"><strong>Breed:</strong> Mixed Breed</small>
+                                <small class="text-muted d-block"><strong>Health:</strong> Healthy, needs regular check-ups</small>
+                            </div>
+                            <p class="card-text">Calm and gentle senior dog perfect for a quiet home.</p>
+                            <button class="btn btn-secondary w-100" disabled>
+                                Adoption Pending
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bella - Adult Dog -->
+                <div class="col-lg-4 col-md-6 dog-item adult">
+                    <div class="dog-card position-relative">
+                        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=250&fit=crop&crop=face" alt="Bella - Protective and loyal dog" class="dog-image-real" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="dog-image" style="display: none;">🐕‍🦺</div>
+                        <span class="status-badge status-available">Available</span>
+                        <div class="card-body p-4">
+                            <h5 class="card-title">Bella</h5>
+                            <div class="mb-3">
+                                <small class="text-muted d-block"><strong>Age:</strong> 3 years</small>
+                                <small class="text-muted d-block"><strong>Breed:</strong> Indian Pariah</small>
+                                <small class="text-muted d-block"><strong>Health:</strong> Healthy, spayed</small>
+                            </div>
+                            <p class="card-text">Protective and loyal, great as a guard dog and family companion.</p>
+                            <button class="btn btn-primary-custom w-100" data-bs-toggle="modal" data-bs-target="#adoptionModal">
+                                Adopt Bella
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charlie - Special Needs -->
+                <div class="col-lg-4 col-md-6 dog-item special">
+                    <div class="dog-card position-relative">
+                        <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=250&fit=crop&crop=face" alt="Charlie - Special needs dog full of love" class="dog-image-real" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="dog-image" style="display: none;">🐕</div>
+                        <span class="status-badge status-available">Available</span>
+                        <div class="card-body p-4">
+                            <h5 class="card-title">Charlie</h5>
+                            <div class="mb-3">
+                                <small class="text-muted d-block"><strong>Age:</strong> 4 years</small>
+                                <small class="text-muted d-block"><strong>Breed:</strong> Mixed Breed</small>
+                                <small class="text-muted d-block"><strong>Health:</strong> Missing one leg, otherwise healthy</small>
+                            </div>
+                            <p class="card-text">Despite his disability, Charlie is full of life and love to give.</p>
+                            <button class="btn btn-primary-custom w-100" data-bs-toggle="modal" data-bs-target="#adoptionModal">
+                                Adopt Charlie
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daisy - Adopted -->
+                <div class="col-lg-4 col-md-6 dog-item adult">
+                    <div class="dog-card position-relative">
+                        <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=250&fit=crop&crop=face" alt="Daisy - Happy adopted dog" class="dog-image-real" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="dog-image" style="display: none;">🐶</div>
+                        <span class="status-badge status-adopted">Adopted</span>
+                        <div class="card-body p-4">
+                            <h5 class="card-title">Daisy</h5>
+                            <div class="mb-3">
+                                <small class="text-muted d-block"><strong>Age:</strong> 1 year</small>
+                                <small class="text-muted d-block"><strong>Breed:</strong> Indian Pariah</small>
+                                <small class="text-muted d-block"><strong>Health:</strong> Healthy, vaccinated</small>
+                            </div>
+                            <p class="card-text">Recently adopted! Happy in her new home.</p>
+                            <button class="btn btn-success w-100" disabled>
+                                Already Adopted
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Volunteer Page -->
+    <div id="volunteer" class="page-section">
+        <div class="container py-5">
+            <div class="section-title">
+                <h2>Join Our Volunteer Family 🤝</h2>
+                <p>Every helping hand makes a difference in a dog's life. Join us in our mission to help street dogs find loving homes.</p>
+            </div>
+
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <h3 class="mb-4">How You Can Help 💪</h3>
+                    
+                    <div class="volunteer-activity">
+                        <div class="d-flex align-items-start">
+                            <div class="icon-box icon-box-primary me-3" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                <i class="fas fa-walking"></i>
+                            </div>
+                            <div>
+                                <h5>Dog Walking</h5>
+                                <p class="mb-0">Help our dogs get exercise and socialization. Perfect for morning or evening volunteers!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="volunteer-activity">
+                        <div class="d-flex align-items-start">
+                            <div class="icon-box icon-box-success me-3" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                <i class="fas fa-stethoscope"></i>
+                            </div>
+                            <div>
+                                <h5>Medical Support</h5>
+                                <p class="mb-0">Assist with basic medical care, grooming, and health check-ups.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="volunteer-activity">
+                        <div class="d-flex align-items-start">
+                            <div class="icon-box icon-box-warning me-3" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                <i class="fas fa-clipboard"></i>
+                            </div>
+                            <div>
+                                <h5>Administrative Help</h5>
+                                <p class="mb-0">Help with paperwork, adoption processes, and organizing events.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="volunteer-activity">
+                        <div class="d-flex align-items-start">
+                            <div class="icon-box icon-box-info me-3" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Event Organization</h5>
+                                <p class="mb-0">Help organize adoption drives, fundraising events, and awareness campaigns.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card card-custom">
+                        <div class="card-body p-4">
+                            <h4 class="mb-4">Volunteer Registration</h4>
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label">Full Name *</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Email *</label>
+                                    <input type="email" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Phone Number *</label>
+                                    <input type="tel" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Age Group</label>
+                                    <select class="form-select">
+                                        <option>Under 18</option>
+                                        <option>18-25</option>
+                                        <option>26-35</option>
+                                        <option>36-50</option>
+                                        <option>Over 50</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">How would you like to help? *</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="dogWalking">
+                                        <label class="form-check-label" for="dogWalking">Dog Walking</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="medicalSupport">
+                                        <label class="form-check-label" for="medicalSupport">Medical Support</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="adminHelp">
+                                        <label class="form-check-label" for="adminHelp">Administrative Help</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="eventOrg">
+                                        <label class="form-check-label" for="eventOrg">Event Organization</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Availability</label>
+                                    <select class="form-select">
+                                        <option>Weekends only</option>
+                                        <option>Weekdays only</option>
+                                        <option>Both weekdays and weekends</option>
+                                        <option>Flexible schedule</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Tell us about yourself</label>
+                                    <textarea class="form-control" rows="3" placeholder="Any relevant experience, why you want to volunteer, etc."></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary-custom w-100">Register as Volunteer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donation Page -->
+    <div id="donate" class="page-section">
+        <div class="container py-5">
+            <div class="section-title">
+                <h2>Support Our Mission 💝</h2>
+                <p>Your donations help us provide food, medical care, and shelter to street dogs while we find them loving homes</p>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4">
+                    <div class="donation-card">
+                        <div class="icon-box icon-box-success mb-3">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <h4>Money Donation</h4>
+                        <p class="text-muted mb-4">Help us cover medical expenses, food, and operational costs.</p>
+                        <button class="btn btn-primary-custom mb-3" data-bs-toggle="modal" data-bs-target="#donationModal">
+                            Donate Money
+                        </button>
+                        <div class="small text-muted">UPI, PayPal, Bank Transfer</div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="donation-card">
+                        <img src="" alt="">
+                        <div class="icon-box icon-box-warning mb-3">
+                            <i class="fas fa-bone"></i>
+                        </div>
+                        <h4>Food Donation</h4>
+                        <p class="text-muted mb-4">Donate rice, dog food, biscuits, and other nutritious items.</p>
+                        <button class="btn btn-primary-custom mb-3" data-bs-toggle="modal" data-bs-target="#donationModal">
+                            Donate Food
+                        </button>
+                        <div class="small text-muted">Drop-off or pickup available</div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="donation-card">
+                        <div class="icon-box icon-box-info mb-3">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h4>Toys & Supplies</h4>
+                        <p class="text-muted mb-4">Blankets, toys, leashes, and other supplies to keep dogs comfortable.</p>
+                        <button class="btn btn-primary-custom mb-3" data-bs-toggle="modal" data-bs-target="#donationModal">
+                            Donate Supplies
+                        </button>
+                        <div class="small text-muted">New or gently used items</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QR Code Section -->
+            <div class="card card-custom">
+                <div class="card-body p-5 text-center">
+                    <h3 class="mb-4">Quick Donation via UPI 📱</h3>
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="qr-code">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <p class="text-muted">Scan QR Code</p>
+                            <p class="small text-muted">UPI ID: pawshearts@upi</p>
+                        </div>
+                        <div class="col-md-6 text-start">
+                            <h5 class="mb-3">How your donation helps:</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">• ₹500 - Feeds 10 dogs for a day</li>
+                                <li class="mb-2">• ₹1000 - Vaccination for 2 dogs</li>
+                                <li class="mb-2">• ₹2000 - Medical treatment for 1 dog</li>
+                                <li class="mb-2">• ₹5000 - Monthly food for 20 dogs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Free Food & Toys Page -->
+    <div id="food" class="page-section">
+        <div class="container py-5">
+            <div class="section-title">
+                <h2>Free Food Distribution Program 🍖</h2>
+                <img src="food.jpg" alt="">
+                <p>We organize regular food distribution camps to ensure no street dog goes hungry. Join us in feeding our four-legged friends!</p>
+            </div>
+
+            <div class="row g-5 mb-5">
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Our Food Program 📅</h3>
+                    
+                    <div class="schedule-item">
+                        <div class="d-flex align-items-start">
+                            <div class="icon-box icon-box-primary me-3" style="width: 50px; height: 50px; font-size: 1.2rem;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Central Park Area</h5>
+                                <p class="text-muted mb-2">Every Sunday, 8:00 AM - 10:00 AM</p>
+                                <p class="mb-0">Regular feeding spot for 15-20 dogs in the Central Park vicinity.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="d-flex align-items-start">
+                            <div class="icon-box icon-box-success me-3" style="width: 50px; height: 50px; font-size: 1.2rem;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Market Street</h5>
+                                <p class="text-muted mb-2">Every Wednesday, 6:00 PM - 7:30 PM</p>
+                                <p class="mb-0">Evening feeding session for dogs around the busy market area.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="d-flex align-items-start">
+                            <div class="icon-box icon-box-warning me-3" style="width: 50px; height: 50px; font-size: 1.2rem;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Riverside Colony</h5>
+                                <p class="text-muted mb-2">Every Saturday, 7:00 AM - 9:00 AM</p>
+                                <p class="mb-0">Morning feeding for dogs in the residential colony area.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Happy Moments 📸</h3>
+                    <div class="row g-10">
+                        <div class="col-4">
+                            <img src="sampar.jpg" alt="">
+                            <p class="text-center small text-muted">Dogs enjoying fresh meals</p>
+                        </div> 
+<br> <br>
+
+
+                        <div class="col-6 gap-1">
+                            <img src="action2.jpg" alt="">
+                            <p class="text-center small text-muted">Volunteers in action</p>
+                        </div>
+
+
+                        <div class="col-6">
+                            <img src="playingnew.jpg" alt="">
+                            <p class="text-center small text-muted">Playing with new toys</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-custom">
+                <div class="card-body p-5">
+                    <h3 class="text-center mb-4">Join Our Next Food Camp! 🎉</h3>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <h5 class="mb-3">What We Provide:</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">• Fresh cooked rice and dal</li>
+                                <li class="mb-2">• High-quality dog biscuits</li>
+                                <li class="mb-2">• Clean drinking water</li>
+                                <li class="mb-2">• Nutritious dog food</li>
+                                <li class="mb-2">• Toys and blankets (when available)</li>
+                                <li class="mb-2">• Basic medical check-ups</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mb-3">How You Can Help:</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">• Volunteer to help distribute food</li>
+                                <li class="mb-2">• Donate food items or money</li>
+                                <li class="mb-2">• Help with transportation</li>
+                                <li class="mb-2">• Spread awareness about our camps</li>
+                                <li class="mb-2">• Take photos/videos for social media</li>
+                                <li class="mb-2">• Assist with dog health checks</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary-custom btn-custom" onclick="showPage('volunteer')">
+                            Join Our Next Camp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Page -->
+    <div id="gallery" class="page-section">
+        <div class="container py-5">
+            <div class="section-title">
+                <h2>Our Gallery 📸</h2>
+                <p>Beautiful moments captured with our furry friends - from rescue to forever homes</p>
+            </div>
+
+            <!-- Gallery Categories -->
+            <div class="text-center mb-5">
+                <button class="filter-btn active" onclick="filterGallery('all')">All Photos</button>
+                <button class="filter-btn" onclick="filterGallery('before')">Before Adoption</button>
+                <button class="filter-btn" onclick="filterGallery('after')">After Adoption</button>
+                <button class="filter-btn" onclick="filterGallery('events')">Events</button>
+                <button class="filter-btn" onclick="filterGallery('volunteers')">Volunteers</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="row g-4" id="gallery-grid">
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item before">
+                    <div class="card card-custom">
+                        <img src="dog.jpg" alt="">
+                        <div class="card-body p-3">
+                            <h6 class="card-title">Buddy's Rescue Day</h6>
+                            <p class="card-text small text-muted">Found hungry and scared, now ready for love</p>
+                            <span class="badge bg-warning">Before Adoption</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item after">
+                    <div class="card card-custom">
+                        <img src="home2.jpg" alt="">
+                        <div class="card-body p-3">
+                            <h6 class="card-title">Buddy's New Life</h6>
+                            <p class="card-text small text-muted">Thriving with his loving family</p>
+                            <span class="badge bg-success">After Adoption</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item events">
+                    <div class="card card-custom">
+                        <img src="2weekend adoption.jpg" alt="">
+                        <div class="card-body p-4">
+                            <h6 class="card-title">Weekend Adoption Drive</h6>
+                            <p class="card-text small text-muted">Successful event with 5 adoptions!</p>
+                            <span class="badge bg-primary">Events</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item volunteers">
+                    <div class="card card-custom">
+                        <img src="food.jpg" alt="">
+                        <div class="card-body p-3">
+                            <h6 class="card-title">Food Distribution Day</h6>
+                            <p class="card-text small text-muted">Our amazing volunteers in action</p>
+                            <span class="badge bg-info">Volunteers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item before">
+                    <div class="card card-custom">
+                        <img src="injured.jpg" alt="">
+                        <div class="card-body p-3">
+                            <h6 class="card-title">Luna's Rescue</h6>
+                            <p class="card-text small text-muted">Found with injured paw, now healing </p>
+                            <span class="badge bg-warning">Before Adoption</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item after">
+                    <div class="card card-custom">
+                        <img src="playig.jpg" alt="">
+                        <div class="card-body p-3">
+                            <h6 class="card-title">Luna Playing</h6>
+                            <p class="card-text small text-muted">Fully recovered and playful Found with injured paw, now healing lo</p>
+                            <span class="badge bg-success">After Adoption</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item events">
+                    <div class="card card-custom">
+                        <img src="health.jpg" alt="">
+                        <div class="card-body p-3">
+                            <h6 class="card-title">Medical Camp</h6>
+                            <p class="card-text small text-muted">Free health checkups for street dogs</p>
+                            <span class="badge bg-primary">Events</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item volunteers">
+                    <div class="card card-custom">
+                        <img src="training.jpg" alt="">
+                        <div class="card-body p-3">
+                            <h6 class="card-title">Volunteer Training</h6>
+                            <p class="card-text small text-muted">Training new volunteers</p>
+                            <span class="badge bg-info">Volunteers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page-section">
+        <div class="container py-5">
+            
+
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <div class="contact-info">
+                        <h4 class="mb-4">Contact Information</h4>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h6>Address</h6>
+                                <p class="mb-0">123 Animal Welfare Street<br>Compassion City, CC 12345<br>Near Central Park</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h6>Phone & WhatsApp</h6>
+                                <p class="mb-0">+1 (555) 123-4567<br><small>Available 9 AM - 8 PM daily</small></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h6>Email</h6>
+                                <p class="mb-0">info@pawsandhearts.org<br>adopt@pawsandhearts.org</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h6>Office Hours</h6>
+                                <p class="mb-0">Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: 11:00 AM - 3:00 PM</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div>
+                                <h6>Emergency</h6>
+                                <p class="mb-0">For injured dogs: +1 (555) 911-DOGS<br><small>24/7 emergency rescue hotline</small></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Placeholder -->
+                    <div class="card card-custom mt-4">
+                        <div class="card-body text-center p-4">
+                            <div class="gallery-image mb-3">🗺️</div>
+                            <h5>Find Us Here</h5>
+                            <p class="text-muted mb-3">123 Animal Welfare Street, Compassion City</p>
+                            <button class="btn btn-primary-custom">Open in Google Maps</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card card-custom">
+                        <div class="card-body p-4">
+                            <h4 class="mb-4">Send Us a Message</h4>
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label">Name *</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Email *</label>
+                                    <input type="email" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Subject *</label>
+                                    <select class="form-select" required>
+                                        <option value="">Select a subject</option>
+                                        <option>Adoption Inquiry</option>
+                                        <option>Volunteer Application</option>
+                                        <option>Donation Question</option>
+                                        <option>Report Injured Dog</option>
+                                        <option>General Question</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Message *</label>
+                                    <textarea class="form-control" rows="5" placeholder="Tell us how we can help you..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary-custom w-100">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="card card-custom mt-5">
+                <div class="card-body p-5">
+                    <h4 class="text-center mb-4">Follow Our Journey 📱</h4>
+                    <div class="row g-4 text-center">
+                        <div class="col-md-4">
+                            <div class="icon-box icon-box-primary mb-3">
+                                <i class="fab fa-facebook-f"></i>
+                            </div>
+                            <h5>Facebook</h5>
+                            <p class="text-muted small mb-3">Daily updates and success stories</p>
+                            <button class="btn btn-outline-primary btn-sm">Follow Us</button>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="icon-box icon-box-warning mb-3">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <h5>Instagram</h5>
+                            <p class="text-muted small mb-3">Cute photos and behind-the-scenes</p>
+                            <button class="btn btn-outline-primary btn-sm">Follow Us</button>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="icon-box icon-box-info mb-3">
+                                <i class="fab fa-twitter"></i>
+                            </div>
+                            <h5>Twitter</h5>
+                            <p class="text-muted small mb-3">Quick updates and adoption alerts</p>
+                            <button class="btn btn-outline-primary btn-sm">Follow Us</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5>🐾 Paws & Hearts</h5>
+                    <p class="text-muted">Dedicated to giving street dogs loving homes and second chances at happiness.</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" onclick="showPage('adopt')">Adopt a Dog</a></li>
+                        <li><a href="#" onclick="showPage('volunteer')">Volunteer</a></li>
+                        <li><a href="#" onclick="showPage('donate')">Donate</a></li>
+                        <li><a href="#" onclick="showPage('food')">Free Food Program</a></li>
+                    </ul>
+                </div>
+               
+    
+                <div class="col-lg-3 col-md-6">
+                    <h5>Emergency</h5>
+                    <p class="text-muted mb-2">Injured dog rescue:</p>
+                    <p class="h5 text-danger">+1 (555) 911-DOGS</p>
+                    <p class="small text-muted">Available 24/7</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="text-muted mb-0">&copy; 2025 Paws & Hearts. Made with ❤️ for our furry friends.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Adoption Modal -->
+    <div class="modal fade" id="adoptionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Adoption Request</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email *</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address *</label>
+                            <textarea class="form-control" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Why do you want to adopt this dog?</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Previous pet experience?</label>
+                            <select class="form-select">
+                                <option>First time pet owner</option>
+                                <option>Some experience with pets</option>
+                                <option>Very experienced with dogs</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary-custom" onclick="submitForm('adoption')">Submit Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donation Modal -->
+    <div class="modal fade" id="donationModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Donation Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email *</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Donation Type *</label>
+                            <select class="form-select" required>
+                                <option value="">Select type</option>
+                                <option>Money</option>
+                                <option>Food</option>
+                                <option>Supplies</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Amount/Details *</label>
+                            <textarea class="form-control" rows="3" placeholder="For money: amount, For food/supplies: details and quantity" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Message (Optional)</label>
+                            <textarea class="form-control" rows="2" placeholder="Any special message or dedication..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary-custom" onclick="submitForm('donation')">Submit Donation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Filter dogs
+        function filterDogs(category) {
+            const dogs = document.querySelectorAll('.dog-item');
+            const buttons = document.querySelectorAll('#adopt .filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter dogs
+            dogs.forEach(dog => {
+                if (category === 'all' || dog.classList.contains(category)) {
+                    dog.style.display = 'block';
+                } else {
+                    dog.style.display = 'none';
+                }
+            });
+        }
+
+        // Filter gallery
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('#gallery .filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter items
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Submit forms
+        function submitForm(type) {
+            let message = '';
+            if (type === 'adoption') {
+                message = 'Thank you for your adoption request! We will contact you within 24 hours to discuss the next steps. 🐕❤️';
+            } else if (type === 'donation') {
+                message = 'Thank you for your generous donation! We will contact you within 24 hours to coordinate the donation process. 💝';
+            }
+            
+            alert(message);
+            
+            // Close modal
+            const modal = bootstrap.Modal.getInstance(document.querySelector('.modal.show'));
+            if (modal) {
+                modal.hide();
+            }
+        }
+
+        // Handle form submissions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Volunteer form
+            const volunteerForm = document.querySelector('#volunteer form');
+            if (volunteerForm) {
+                volunteerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for volunteering! We will contact you soon with volunteer opportunities and training information. 🤝');
+                    this.reset();
+                });
+            }
+
+            // Contact form
+            const contactForm = document.querySelector('#contact form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you within 24 hours. 📧');
+                    this.reset();
+                });
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97b6e475e4949a5e',t:'MTc1NzI1NTMwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
